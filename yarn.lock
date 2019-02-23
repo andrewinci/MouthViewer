@@ -5585,6 +5585,12 @@ react-native-branch@2.2.5:
   resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-2.2.5.tgz#4074dd63b4973e6397d9ce50e97b57c77a518e9d"
   integrity sha1-QHTdY7SXPmOX2c5Q6XtXx3pRjp0=
 
+"react-native-camera@git+https://git@github.com/react-native-community/react-native-camera.git":
+  version "1.12.0"
+  resolved "git+https://git@github.com/react-native-community/react-native-camera.git#1a5be4b3019105547f903295e0691649e7d373e7"
+  dependencies:
+    prop-types "^15.6.2"
+
 react-native-elements@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-1.0.0.tgz#95bc194f61ec4658d8dbd977524f8c4fd3ada136"

@@ -1,34 +1,34 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text } from 'react-native';
 import { Avatar, ListItem, Button } from 'react-native-elements';
+import UserManager from '../helpers/UsersManager';
 
 
 export default class UsersScreen extends React.Component {
   constructor(props){
     super(props);
-    this.state = {isVisible: false };
+    this.state = {users: UserManager.retrieveUsers()}
   }
 
   static navigationOptions = {
     title: 'Users',
   };
 
+  onRegistrationComplete(){
+    this.setState({users: UserManager.retrieveUsers()})
+  }
+
   showRegistration(){
-    this.setState({isVisible: true });
+    this.props.navigation.navigate('Register', {onRegistrationComplete: () => this.onRegistrationComplete()});
+    
   }
 
   render() {
-
-    const {navigate} = this.props.navigation;
-    const babyes = [
-      { name: 'Baby one', image: require('../assets/images/child1.jpg') },
-      { name: 'Baby two', image: require('../assets/images/child2.jpg') },
-    ]
     return (
-     
+      
       <ScrollView style={styles.container}>
         {
-          babyes.map((b, i) =>
+          this.state.users.map((b, i) =>
             (<ListItem
               key={i}
               style={styles.item}
@@ -36,7 +36,7 @@ export default class UsersScreen extends React.Component {
               title={b.name} />)
           )
         }
-        <Button buttonStyle={styles.btn} title="Add a new one" onPress={() => navigate('Register')}></Button>
+        <Button buttonStyle={styles.btn} title="Add a new one" onPress={() => this.showRegistration()}></Button>
       </ScrollView>
 
     );

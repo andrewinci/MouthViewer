@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen';
 import UsersScreen from '../screens/UsersScreen';
 import AboutScreen from '../screens/AboutScreen';
 import RegisterScreen from '../screens/RegisterScreen';
+import CameraScreen from '../screens/CameraScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -28,7 +29,8 @@ HomeStack.navigationOptions = {
 
 const UsersStack = createStackNavigator({
   Users: UsersScreen,
-  Register: RegisterScreen
+  Register: RegisterScreen,
+  Camera: CameraScreen,
 });
 
 UsersStack.navigationOptions = {
