@@ -6,6 +6,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import UsersScreen from '../screens/UsersScreen';
 import AboutScreen from '../screens/AboutScreen';
+import RegisterScreen from '../screens/RegisterScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -26,7 +27,8 @@ HomeStack.navigationOptions = {
 };
 
 const UsersStack = createStackNavigator({
-  Links: UsersScreen,
+  Users: UsersScreen,
+  Register: RegisterScreen
 });
 
 UsersStack.navigationOptions = {
@@ -40,7 +42,7 @@ UsersStack.navigationOptions = {
 };
 
 const AboutStack = createStackNavigator({
-  Settings: AboutScreen,
+  About: AboutScreen,
 });
 
 AboutStack.navigationOptions = {
@@ -56,6 +58,6 @@ AboutStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   HomeStack,
-  LinksStack: UsersStack,
-  SettingsStack: AboutStack,
+  UsersStack: UsersStack,
+  AboutStack: AboutStack,
 });
