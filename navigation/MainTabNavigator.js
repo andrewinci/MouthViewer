@@ -10,6 +10,7 @@ import RegisterScreen from '../screens/RegisterScreen';
 import CameraScreen from '../screens/CameraScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import TestScreen from '../screens/TestScreen';
+import SendResultScreen from '../screens/SendResultScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -35,6 +36,17 @@ const UsersStack = createStackNavigator({
   Camera: CameraScreen,
   Profile: ProfileScreen,
   Test: TestScreen,
+  SendResult: {
+    screen: SendResultScreen,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: null,
+      tabBarVisible: true,
+      headerMode: "screen",
+      headerStyle: {
+        borderBottomWidth: 0,
+        },
+    }),
+  },
 });
 
 UsersStack.navigationOptions = {
@@ -56,8 +68,8 @@ AboutStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios'  ? `ios-information-circle${focused ? '' : '-outline'}`
-      : 'md-information-circle'}
+      name={Platform.OS === 'ios' ? `ios-information-circle${focused ? '' : '-outline'}`
+        : 'md-information-circle'}
     />
   ),
 };

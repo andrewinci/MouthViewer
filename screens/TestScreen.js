@@ -34,8 +34,8 @@ export default class TestScreen extends React.Component {
         }
         const emptyImage = require('../assets/images/icon.png');
         let sendButton = null;
-        if(this.state.photo !== null)
-            sendButton = <Button buttonStyle={styles.btn} title="Send" ></Button>
+        if (this.state.photo !== null)
+            sendButton = <Button buttonStyle={styles.btn} title="Send" onPress={() => this.props.navigation.navigate("SendResult")} ></Button>
         return <ScrollView style={styles.container}>
             <Text h2 style={styles.title}>{username}</Text>
 
@@ -73,10 +73,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 5,
         margin: 10,
-        marginTop:0
+        marginTop: 0
     },
     image: {
-        margin:10,
+        margin: 10,
+        height: 200,
+        width: 200,
     }
 });
-    
