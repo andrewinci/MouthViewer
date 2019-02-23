@@ -6,19 +6,28 @@ import UserManager from '../helpers/UsersManager';
 export default class RegisterScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { photo: null, name: null };
+    this.state = { photo: null, name: null, age: '' };
   }
-  
-  static navigationOptions = {
-    title: 'Add user',
-  };
+
+  componentDidMount(){
+    let user = this.props.navigation.getParam('user', null);
+    if (user) this.setState({photo: user.image, name: user.name, age: user.age})
+  }
 
   takePicture() {
     this.props.navigation.navigate('Camera', { onPhotoTaken: (p) => this.setState({ photo: p }) });
   }
 
   onSavePress() {
-    UserManager.addUser({ name: this.state.name, image: this.state.photo });
+    let user = this.props.navigation.getParam('user', null)
+    if (user == null)
+      UserManager.addUser({ name: this.state.name, image: this.state.photo, age: this.state.age });
+    else {
+      user.name = this.state.name;
+      user.image = this.state.photo;
+      user.age = this.state.age;
+      UserManager.updateUser( user );
+    }
     let cb = this.props.navigation.getParam('onRegistrationComplete', null)
     if (cb) cb();
     this.props.navigation.goBack();
@@ -44,12 +53,8 @@ export default class RegisterScreen extends React.Component {
       <View style={styles.avatar_style}>
         {avatar}
       </View>
-      <Input label='Name'
-        onChangeText={(text) => this.setState({ name: text })}
-        value={this.state.name} />
-      <Input label='Age' />
-      <Input label='Info 1' />
-      <Input label='Info 2' />
+      <Input label='Name' onChangeText={(text) => this.setState({ name: text })} value={this.state.name} />
+      <Input label='Age' onChangeText={(text) => this.setState({ age: text })} value={this.state.age} />
       <Button buttonStyle={styles.btn} title="Save" onPress={() => this.onSavePress()}></Button>
     </ScrollView>;
   }

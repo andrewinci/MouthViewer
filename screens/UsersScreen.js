@@ -34,8 +34,8 @@ export default class UsersScreen extends React.Component {
   }
 
   render() {
-    return (
 
+    return (
       <ScrollView style={styles.container}>
         {
           this.state.users.map((user, i) =>
@@ -44,7 +44,11 @@ export default class UsersScreen extends React.Component {
               style={styles.item}
               leftAvatar={<Avatar rounded source={user.image} />}
               rightIcon={this.buildRightIcon()}
-              onPress={() => this.props.navigation.navigate('Profile', { user: user })}
+              onPress={() => this.props.navigation.navigate('Profile',
+                {
+                  user: user,
+                  onRegistrationComplete: () => this.onRegistrationComplete()
+                })}
               title={user.name} />)
           )
         }
