@@ -8,6 +8,7 @@ export default class RegisterScreen extends React.Component {
     super(props);
     this.state = { photo: null, name: null };
   }
+  
   static navigationOptions = {
     title: 'Add user',
   };
@@ -43,12 +44,12 @@ export default class RegisterScreen extends React.Component {
       <View style={styles.avatar_style}>
         {avatar}
       </View>
-      <Input inputContainerStyle={styles.text_input} placeholder='Name'
+      <Input label='Name'
         onChangeText={(text) => this.setState({ name: text })}
         value={this.state.name} />
-      <Input inputContainerStyle={styles.text_input} placeholder='Age' />
-      <Input inputContainerStyle={styles.text_input} placeholder='Info 1' />
-      <Input inputContainerStyle={styles.text_input} placeholder='Info 2' />
+      <Input label='Age' />
+      <Input label='Info 1' />
+      <Input label='Info 2' />
       <Button buttonStyle={styles.btn} title="Save" onPress={() => this.onSavePress()}></Button>
     </ScrollView>;
   }

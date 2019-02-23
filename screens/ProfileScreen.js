@@ -15,9 +15,9 @@ export default class ProfileScreen extends React.Component {
     componentDidMount() {
         let user = this.props.navigation.getParam('user', null);
         if (user == null) return;
-        this.navigationOptions = { title: user.name };
         this.setState({ user: user });
     }
+
 
     buildRightIcon() {
         return <Icon.Ionicons
@@ -45,7 +45,6 @@ export default class ProfileScreen extends React.Component {
                 title="A" />
         }
 
-
         return (
             <ScrollView style={styles.container}>
                 <Text h2 style={styles.title}>{username}</Text>
@@ -56,12 +55,12 @@ export default class ProfileScreen extends React.Component {
                 <ListItem
                     style={styles.item}
                     rightIcon={this.buildRightIcon()}
-                    onPress={() => { }}
+                    onPress={() => { this.props.navigation.navigate('Test', { user: this.state.user }) }}
                     title='Sceening' />
                 <ListItem
                     style={styles.item}
                     rightIcon={this.buildRightIcon()}
-                    onPress={() => { }}
+                    onPress={() => { this.props.navigation.navigate('History') }}
                     title='History' />
                 <ListItem
                     style={styles.item}
@@ -90,7 +89,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        marginTop:10,
+        marginTop: 10,
     },
     title: {
         textAlign: 'center',

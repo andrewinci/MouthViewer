@@ -30,19 +30,22 @@ export default class CameraScreen extends React.Component {
         });
     }
 
+    onSave() {
+
+        let cb = this.props.navigation.getParam('onPhotoTaken', null)
+        if (cb) {
+            cb(this.state.photo);
+        }
+        else {
+            console.log('No parameter found')
+        }
+        this.props.navigation.goBack();
+    }
+
     async onTakePicture() {
         if (this.camera) {
             this.camera.takePictureAsync().then(
-                r => {
-                    this.setState({ photo: r });
-                    let cb =this.props.navigation.getParam('onPhotoTaken', null)
-                    if (cb) {
-                        cb(r);
-                    }
-                    else{
-                        console.log('No parameter found')
-                    }
-                }
+                r => this.setState({ photo: r })
             );
         }
         //The local image URI is temporary. Use Expo.FileSystem.copyAsync to make a permanent copy of the image.
@@ -50,7 +53,8 @@ export default class CameraScreen extends React.Component {
 
     buildCameraView() {
 
-        return <Camera ref={ref => { this.camera = ref; }} style={{ flex: 1 }} type={this.state.type} >
+        return <Camera ref={ref => { this.camera = ref; }} style={{ flex: 1 }} type={this.state.type} 
+            flashMode={this.props.navigation.getParam('flash', false) ? 'on' : 'auto' }>
             <View style={styles.view}>
                 <TouchableOpacity style={styles.flip} onPress={() => this.onFlipPress()}>
                     <Text style={styles.text}>{' '}Flip{' '}</Text>
@@ -76,7 +80,8 @@ export default class CameraScreen extends React.Component {
             console.log(this.state.photo)
             return <View style={{ flex: 1 }}>
                 <Image style={styles.image} source={this.state.photo} resizeMode="contain" />
-                <Button buttonStyle={styles.btn} onPress={() => this.props.navigation.goBack()} title="Save"></Button>
+                <Button buttonStyle={styles.btn} onPress={() => this.setState({photo: null})} title="Re-Take"></Button>
+                <Button buttonStyle={styles.btn} onPress={() => this.onSave()} title="Save"></Button>
             </View>
         } else {
             return <View style={{ flex: 1 }}>
@@ -108,6 +113,9 @@ const styles = StyleSheet.create({
     text: { fontSize: 18, marginBottom: 10, color: 'white' },
     btn: {
         borderRadius: 5,
-        margin: 10,
+        margin:5,
+        marginLeft: 10,
+        marginRight: 10,
+
     },
 });
