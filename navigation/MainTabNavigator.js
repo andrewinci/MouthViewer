@@ -34,7 +34,16 @@ const UsersStack = createStackNavigator({
   Users: UsersScreen,
   Register: RegisterScreen,
   Camera: CameraScreen,
-  Profile: ProfileScreen,
+  Profile: {
+    screen: ProfileScreen,
+    navigationOptions: ({ navigation }) => ({
+      tabBarVisible: true,
+      headerMode: "screen",
+      headerStyle: {
+        borderBottomWidth: 0,
+        },
+    }),
+  },
   Test: TestScreen,
   SendResult: {
     screen: SendResultScreen,
