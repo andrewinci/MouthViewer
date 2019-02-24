@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, View, ScrollView, StyleSheet } from 'react-native';
 import { Avatar, Text, Slider, Input, Button, CheckBox } from 'react-native-elements';
 import UserManager from '../helpers/UsersManager';
+import { Icon } from 'expo';
 
 export default class TestScreen extends React.Component {
     constructor(props) {
@@ -27,6 +28,15 @@ export default class TestScreen extends React.Component {
         this.props.navigation.goBack();
     }
 
+    buildTextAndInfo(text){
+        return <Text>{text+' '}<Icon.Ionicons
+                    name='ios-information-circle-outline'
+                    size={15}
+                    style={{ marginBottom: -5 }}
+                    color="#007aff"
+                /></Text> 
+    }
+
     render() {
         const questions = [
             'Score throat','Difficulties in swallowing','Fatigue','Vomiting',
@@ -47,13 +57,14 @@ export default class TestScreen extends React.Component {
                 questions.map( (t, i) => 
                     <CheckBox 
                         key={i}
-                        title={t} 
+                        title={this.buildTextAndInfo(t)}
                         checked={this.state.questions[i]}
                         onPress={() => {
                             this.setState({ checked: !this.state.checked });
                             this.state.questions[i] = !this.state.questions[i];
                         }}
-                    /> )
+                    > 
+                    </CheckBox> )
             }
             <Image style={styles.image} source={this.state.photo != null ? this.state.photo : emptyImage} resizeMode="contain"></Image>
             <Button buttonStyle={styles.btn_first} title="Attach photo" onPress={() => this.takePicture()} ></Button>
