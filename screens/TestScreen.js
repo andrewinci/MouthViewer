@@ -1,13 +1,13 @@
 import React from 'react';
 import { Image, View, ScrollView, StyleSheet } from 'react-native';
-import { Avatar, Text, Slider, Input, Button, CheckBox } from 'react-native-elements';
+import { Avatar, Text, Overlay, Input, Button, CheckBox } from 'react-native-elements';
 import UserManager from '../helpers/UsersManager';
 import { Icon } from 'expo';
 
 export default class TestScreen extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { photo: null, name: null, questions: [] };
+        this.state = { photo: null, name: null, questions: [], isVisible: false };
     }
 
     componentDidMount() {
@@ -28,18 +28,20 @@ export default class TestScreen extends React.Component {
         this.props.navigation.goBack();
     }
 
-    buildTextAndInfo(text){
-        return <Text>{text+' '}<Icon.Ionicons
-                    name='ios-information-circle-outline'
-                    size={15}
-                    style={{ marginBottom: -5 }}
-                    color="#007aff"
-                /></Text> 
+    buildTextAndInfo(text) {
+        return <Text>{text + ' '}<Icon.Ionicons
+            name='ios-information-circle-outline'
+            size={15}
+            style={{ marginBottom: -5 }}
+            color="#007aff"
+            onPress={() => this.setState({ isVisible: !this.state.isVisible })}
+        />
+        </Text>
     }
 
     render() {
         const questions = [
-            'Score throat','Difficulties in swallowing','Fatigue','Vomiting',
+            'Sore throat', 'Difficulties in swallowing', 'Fatigue', 'Vomiting',
             'Fever', 'Caugh', 'Stuffy nose', 'Trouble opening mouth',
             'Earache', 'Exudote', 'Swallon nodes'
         ];
@@ -54,8 +56,8 @@ export default class TestScreen extends React.Component {
         return <ScrollView style={styles.container}>
             <Text h2 style={styles.title}>{username}</Text>
             {
-                questions.map( (t, i) => 
-                    <CheckBox 
+                questions.map((t, i) =>
+                    <CheckBox
                         key={i}
                         title={this.buildTextAndInfo(t)}
                         checked={this.state.questions[i]}
@@ -63,17 +65,30 @@ export default class TestScreen extends React.Component {
                             this.setState({ checked: !this.state.checked });
                             this.state.questions[i] = !this.state.questions[i];
                         }}
-                    > 
-                    </CheckBox> )
+                    >
+                    </CheckBox>)
             }
             <Image style={styles.image} source={this.state.photo != null ? this.state.photo : emptyImage} resizeMode="contain"></Image>
             <Button buttonStyle={styles.btn_first} title="Attach photo" onPress={() => this.takePicture()} ></Button>
             {sendButton}
+            <Overlay style={styles.overlay} isVisible={this.state.isVisible} height="auto">
+                <ScrollView>
+                    <Text h4 style={styles.title}>How to check it ...</Text>
+                    <Text >A fever is a high temperature of 38C or more.
+                    A normal temperature in babies and children is about 36.4C, but this can vary slightly from child to child.
+                    </Text>
+                    <Button buttonStyle={styles.btn_first} title="Got it" onPress={() => this.setState({ isVisible: false })} ></Button>
+                </ScrollView>
+            </Overlay>
         </ScrollView>;
     }
 }
 
 const styles = StyleSheet.create({
+    overlay:{
+        height:50,
+        borderRadius:10,
+    },
     title: {
         textAlign: 'center',
     },
