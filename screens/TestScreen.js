@@ -31,7 +31,7 @@ export default class TestScreen extends React.Component {
     buildTextAndInfo(text) {
         return <Text>{text + ' '}<Icon.Ionicons
             name='ios-information-circle-outline'
-            size={15}
+            size={20}
             style={{ marginBottom: -5 }}
             color="#007aff"
             onPress={() => this.setState({ isVisible: !this.state.isVisible })}
@@ -49,7 +49,7 @@ export default class TestScreen extends React.Component {
         if (this.state.user != null && this.state.user.name != null) {
             username = this.state.user.name;
         }
-        const emptyImage = require('../assets/images/icon.png');
+        const emptyImage = require('../assets/images/empty_icon.png');
         let sendButton = null;
         if (this.state.photo !== null)
             sendButton = <Button buttonStyle={styles.btn} title="Send" onPress={() => this.props.navigation.navigate("SendResult")} ></Button>
@@ -73,7 +73,7 @@ export default class TestScreen extends React.Component {
             {sendButton}
             <Overlay style={styles.overlay} isVisible={this.state.isVisible} height="auto">
                 <ScrollView>
-                    <Text h4 style={styles.title}>How to check it ...</Text>
+                    <Text h4 style={styles.title}>Info</Text>
                     <Text >A fever is a high temperature of 38C or more.
                     A normal temperature in babies and children is about 36.4C, but this can vary slightly from child to child.
                     </Text>

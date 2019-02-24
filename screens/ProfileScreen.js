@@ -62,7 +62,7 @@ export default class ProfileScreen extends React.Component {
                     style={styles.item}
                     rightIcon={this.buildRightIcon()}
                     onPress={() => { this.props.navigation.navigate('Test', { user: this.state.user }) }}
-                    title='Sceening' />
+                    title='Screening' />
                 <ListItem
                     style={styles.item}
                     rightIcon={this.buildRightIcon()}

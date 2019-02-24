@@ -16,7 +16,7 @@ export default class AboutScreen extends React.Component {
 
     return <View style={{ flex: 1 }}>
       <View style={{ flex: 1 }}>
-      <Image style={styles.image} source={require('../assets/images/mouthviewer.png')} resizeMode="contain" />
+      <Image style={styles.image} source={require('../assets/images/icon.png')} resizeMode="contain" />
       </View>
     </View>;
   }
