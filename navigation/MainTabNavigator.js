@@ -69,7 +69,17 @@ UsersStack.navigationOptions = {
 };
 
 const AboutStack = createStackNavigator({
-  About: AboutScreen,
+  About: {
+    screen: AboutScreen,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: null,
+      tabBarVisible: true,
+      headerMode: "screen",
+      headerStyle: {
+        borderBottomWidth: 0,
+        },
+    }),
+  },
 });
 
 AboutStack.navigationOptions = {

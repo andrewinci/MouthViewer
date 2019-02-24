@@ -6,7 +6,7 @@ import UserManager from '../helpers/UsersManager';
 export default class TestScreen extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { photo: null, name: null };
+        this.state = { photo: null, name: null, questions: [] };
     }
 
     componentDidMount() {
@@ -28,6 +28,11 @@ export default class TestScreen extends React.Component {
     }
 
     render() {
+        const questions = [
+            'Score throat','Difficulties in swallowing','Fatigue','Vomiting',
+            'Fever', 'Caugh', 'Stuffy nose', 'Trouble opening mouth',
+            'Earache', 'Exudote', 'Swallon nodes'
+        ];
         let username = '';
         if (this.state.user != null && this.state.user.name != null) {
             username = this.state.user.name;
@@ -38,12 +43,18 @@ export default class TestScreen extends React.Component {
             sendButton = <Button buttonStyle={styles.btn} title="Send" onPress={() => this.props.navigation.navigate("SendResult")} ></Button>
         return <ScrollView style={styles.container}>
             <Text h2 style={styles.title}>{username}</Text>
-
-            <Input label='Info 0' />
-            <CheckBox title='Fever' checked={this.state.checked} onPress={() => this.setState({ checked: !this.state.checked })} />
-
-            <Input label='Info 1' />
-            <Input label='Info 2' />
+            {
+                questions.map( (t, i) => 
+                    <CheckBox 
+                        key={i}
+                        title={t} 
+                        checked={this.state.questions[i]}
+                        onPress={() => {
+                            this.setState({ checked: !this.state.checked });
+                            this.state.questions[i] = !this.state.questions[i];
+                        }}
+                    /> )
+            }
             <Image style={styles.image} source={this.state.photo != null ? this.state.photo : emptyImage} resizeMode="contain"></Image>
             <Button buttonStyle={styles.btn_first} title="Attach photo" onPress={() => this.takePicture()} ></Button>
             {sendButton}

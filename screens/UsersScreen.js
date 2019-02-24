@@ -52,7 +52,7 @@ export default class UsersScreen extends React.Component {
               title={user.name} />)
           )
         }
-        <Button buttonStyle={styles.btn} title="Add a new one" onPress={() => this.showRegistration()}></Button>
+        <Button buttonStyle={styles.btn} title="Add" onPress={() => this.showRegistration()}></Button>
       </ScrollView>
 
     );

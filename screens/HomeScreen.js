@@ -24,9 +24,9 @@ export default class HomeScreen extends React.Component {
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <Card
             title="What is tonsillitis ?"
-            image={require('../assets/images/face.jpg')}>
+            image={require('../assets/images/face1.png')}>
             <Text style={{ marginBottom: 10 }}>
-              Ask Ana ... 
+            Tonsillitis is inflammation of the tonsils. It's usually caused by a viral infection or, less commonly, a bacterial ...
             </Text>
             <Button
               backgroundColor='#03A9F4'
@@ -36,9 +36,9 @@ export default class HomeScreen extends React.Component {
 
           <Card
             title="What is quinsy ?"
-            image={require('../assets/images/baby.jpg')}>
+            image={require('../assets/images/face2.png')}>
             <Text style={{ marginBottom: 10 }}>
-              Ask Ylenia ...
+            The medical term for quinsy is peritonsillar abscess. It's an uncommon complication of tonsillitis that ...
             </Text>
             <Button
               backgroundColor='#03A9F4'

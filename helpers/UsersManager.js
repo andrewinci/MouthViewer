@@ -2,7 +2,7 @@ class userManager
 {
     constructor(){
         this.users = [
-            { id: 0, name: 'Daniel', image: require('../assets/images/child1.jpg'), age: '2' },
+            { id: 0, name: 'Rose', image: require('../assets/images/child1.jpg'), age: '2' },
             { id: 1, name: 'Antonio', image: require('../assets/images/child2.jpg'), age: '10' },
           ]
         this.counter = 2
