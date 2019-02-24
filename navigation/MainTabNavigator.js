@@ -59,7 +59,7 @@ const UsersStack = createStackNavigator({
 });
 
 UsersStack.navigationOptions = {
-  tabBarLabel: 'Users',
+  tabBarLabel: 'My Children',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}

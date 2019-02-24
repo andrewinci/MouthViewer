@@ -13,7 +13,7 @@ export default class UsersScreen extends React.Component {
   }
 
   static navigationOptions = {
-    title: 'Users',
+    title: 'My children',
   };
 
   onRegistrationComplete() {
